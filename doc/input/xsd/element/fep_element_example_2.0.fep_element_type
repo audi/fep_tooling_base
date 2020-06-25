@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<element_type xmlns="fep/xsd/element_type">
+    <schema_version>2.0.0</schema_version>
+    <type_name>RadarSensor</type_name>
+    <type_id>RadarSensor</type_id>
+    <description>This is a description of the whole functionality this Element is able to provide.</description>
+    <version>1.0.0</version>
+    <author>contact1</author>
+
+    <configuration_interface>
+        <properties>
+            <property>
+                <name>parameter_1</name>
+                <type>int</type>
+                <!-- supported types must be defined !-->
+                <defaultvalue>34</value>
+            </property>
+        </properties>
+    </configuration_interface>
+    <!-- defines the data interface (ins and outs) -->
+    <data_interfaces>
+        <inputs>
+            <input>
+                <name>input_value_plain</name>
+                <type>
+                    <!--supported meta types must be defined -->
+                    <metatype_name>plain-ctype</metatype_name>
+                    <properties>
+                        <property>
+                            <name>datatype</name>
+                            <type>string</type>
+                            <!-- supported types must be defined !-->
+                            <value>int8_t</value>
+                        </property>
+                    </properties>
+                </type>
+            </input>
+            <input>
+                <name>input_value_structured</name>
+                <type>
+                    <metatype_name>ddl</metatype_name>
+                    <properties>
+                        <property>
+                            <name>ddlstruct</name>
+                            <type>string</type>
+                            <!-- this file must be next to this element_type description file-->
+                            <value>my_struct</value>
+                        </property>
+                        <property>
+                            <name>ddldescription</name>
+                            <type>string</type>
+                            <!-- here it can be fully described if you want that-->
+                            <value></value>
+                        </property>
+                        <property>
+                            <name>ddlfileref</name>
+                            <type>filename</type>
+                            <!-- this file must be next to this element_type description file-->
+                            <!-- all filereferences are related to this file-->
+                            <value>./element_type.ddl_description_file</value>
+                        </property>
+                    </properties>
+                </type>
+            </input>
+        </inputs>
+        <outputs>
+            <output>
+                <name>input_value_plain</name>
+                <type>
+                    <metatype_name>plain-array-ctype</metatype_name>
+                    <properties>
+                        <property>
+                            <name>datatype</name>
+                            <type>string</type>
+                            <value>uint64_t</value>
+                        </property>
+                        <property>
+                            <name>max_array_size</name>
+                            <type>size</type>
+                            <value>32</value>
+                        </property>
+                    </properties>
+                </type>
+            </output>
+        </outputs>
+    </data_interfaces>
+
+    <!-- defines the interface provided by this element 
+         REMARK: These are interfaces which will have a functional relation for 
+         this element. 
+          -->
+    <service_interfaces>
+        <service_interface>
+            <name>SensorService</name>
+            <type>AUDISensorInterface</type>
+            <version>1.0.0</version>
+            <interface_description>
+                <protocol>JSON-RPC</protocol>
+                <file_reference>audi_sensor_interface.json</file_reference>
+            </interface_description>
+        </service_interface>
+    </service_interfaces>
+
+    <!--The service interfaces required of the element type. 
+        If used within a system description one of the other element instances must provided this interface  -->
+    <required_service_interfaces>
+        <required_service_interface>
+            <type>other_service_type</type>
+            <version>2.3.0</version>
+            <interface_description>
+                <protocol>JSON-RPC</protocol>
+                <file_reference>other_service_type.json</file_reference>
+            </interface_description>
+        </required_service_interface>
+    </required_service_interfaces>
+</element_type>

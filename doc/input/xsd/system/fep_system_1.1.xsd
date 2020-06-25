@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="fep/xsd/system"
+           xmlns:fep="fep/xsd/system"
+           version="1.0">
+
+    <xs:element name="system" type="fep:system"></xs:element>
+
+    <xs:complexType name="system">
+        <xs:sequence>
+            <xs:element name="schema_version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The schema version of the current file.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>A short description of the system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The version of the system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contact" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Contact information for this system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="requirement_resolutions" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>System Resolutions for the interface requirements</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="requirement_resolution"
+                                    type="fep:requirement_resolution"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="properties">
+                <xs:annotation>
+                    <xs:documentation>System properties, available to all elements</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="property"
+                                    type="fep:property"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="elements">
+                <xs:annotation>
+                    <xs:documentation>List of element instances in the system</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="element"
+                                    type="fep:element_instance"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="property">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="element_instance">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the instance. Must be unique within this system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The type of this element described in an element description</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type_version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The version of the type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="interface_properties">
+                <xs:annotation>
+                    <xs:documentation>Interface property values to be set on this instance</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="interface"
+                                    type="fep:interface_properties"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="requirement_resolutions">
+                <xs:annotation>
+                    <xs:documentation>Resolutions for the interface requirements</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="requirement_resolution"
+                                    type="fep:requirement_resolution"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="interface_properties">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="properties">
+                <xs:annotation>
+                    <xs:documentation>Properties for the interface </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="property"
+                                    type="fep:property"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="requirement_resolution">
+        <xs:sequence>
+            <xs:element name="requirement" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the required interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="resolution" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The resolution of the interface requirement</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

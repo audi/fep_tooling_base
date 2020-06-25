@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="fep/xsd/element_type"
+           xmlns:fep="fep/xsd/element_type"
+           version="2.0.0">
+
+    <xs:element name="element_type" type="fep:element_type"/>
+
+    <!-- THE MAIN DESCRIPTION FOR THE ELEMENT TYPE -->
+    <xs:complexType name="element_type">
+        <xs:sequence>
+            <xs:element name="schema_version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The schema version of the current file.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type_name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The type name of the element</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+             <xs:element name="type_id" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The type name of the element by using a unique idetifier</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>A short description of the  element type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The version of the element which is usually within the element type ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="author" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>author information for this  element type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="category" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>optional category for this element type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="data_interfaces">
+                <xs:element name="inputs">
+                    <xs:annotation>
+                        <xs:documentation>Published Data ins and data outs</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="input"
+                                        type="fep:data_description"
+                                        minOccurs="0"
+                                        maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="outputs">
+                    <xs:annotation>
+                        <xs:documentation>Published Data ins and data outs</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="output"
+                                        type="fep:data_description"
+                                        minOccurs="0"
+                                        maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:element>
+
+            <xs:element name="service_interfaces">
+                <xs:annotation>
+                    <xs:documentation>Published service interfaces of the element type</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="service_interface"
+                                    type="fep:service_interface"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="required_service_interfaces">
+                <xs:annotation>
+                    <xs:documentation>The service interfaces required of the element type. 
+                                      If used within a system description one of the other elements must provided this interface 
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="required_service_interface"
+                                    type="fep:required_service_interface"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- USED FOR DATA INTERFACES and CONFIGURATION INTERFACE-->
+    <xs:complexType name="property_list_enumeration">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="property">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+            <xs:element name="list" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="property_list_enumeration"
+                                    type="fep:property_list_enumeration"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="list_extendable" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:any namespace="##other" processContents="skip"
+                 minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="datatype_description">
+        <xs:sequence>
+            <xs:element name="metatype_name" type="xs:string"/>
+            <xs:element name="properties">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="property" type="fep:property" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:any namespace="##other" processContents="skip"
+                 minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType> 
+
+    <!-- DESCRIPTION FOR THE DATA INTERFACES -->
+    <xs:complexType name="data_description">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The protocol of the interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="fep:datatype_description">
+                <xs:annotation>
+                    <xs:documentation>The data type description for input or output
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- USED FOR SERVICE INTERFACES -->
+    <xs:complexType name="interface_description">
+        <xs:sequence>
+            <xs:element name="protocol" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The protocol of the interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="file_reference" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The file reference to the description of the service interface.
+                                      This depends on the protocol used - for JSON-RPC a reference to a json file must be provided.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- DESCRIPTION FOR THE PROVIDED INTERFACES -->
+    <xs:complexType name="service_interface">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The name of the published interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The type of thes interface (fep2 will use 'configuration' - description of properties to set 
+                                                                                'service'       - service interface on the bus (usually described by a json file)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The version of the published interface</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="interface_description" type="fep:interface_description"/>
+                <xs:annotation>
+                    <xs:documentation>the interface description</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- DESCRIPTION FOR THE REQUIRED INTERFACES -->
+    <xs:complexType name="required_service_interface">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The type of the interface required. 
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The version of the interface required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="interface_description" type="fep:interface_description"/>
+                <xs:annotation>
+                    <xs:documentation>the interface description</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

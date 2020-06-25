@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<property_file xmlns="fep/xsd/properties">
+    <schema_version>1.0.0</schema_version>
+    <properties>
+        <property>
+            <name>name1</name>
+            <value>value1</value>
+            <type>type1</type>
+        </property>
+        <property>
+            <name>name2</name>
+            <value>value2</value>
+            <type>type2</type>
+        </property>
+        <property>
+            <name>name3</name>
+            <value>value3</value>
+            <type>type3</type>
+            <ignored_extension />
+        </property>
+        <ignored_extension />
+    </properties>
+</property_file>

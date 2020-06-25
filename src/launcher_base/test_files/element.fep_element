@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<element xmlns="fep/xsd/element">
+    <schema_version>1.0.0</schema_version>
+    <type_name>TestElement</type_name>
+    <description>Test Element</description>
+    <version>1</version>
+    <contact>somebody@audi.de</contact>
+    <interfaces>
+        <interface>
+            <name>TestInterface</name>
+            <version>1</version>
+            <properties>
+                <property>
+                    <name>InterfaceProperty</name>
+                    <type>string</type>
+                    <value></value>
+                </property>
+                <property>
+                    <name>InterfaceProperty2</name>
+                    <type>string</type>
+                    <value></value>
+                </property>
+            </properties>
+        </interface>
+    </interfaces>
+    <requirements>
+        <requirement>
+            <name>TestInterface</name>
+            <version>1</version>
+        </requirement>
+    </requirements>
+</element>

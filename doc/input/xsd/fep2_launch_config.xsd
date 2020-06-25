@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="fep/xsd/launch_configuration"
+           xmlns:fep="fep/xsd/launch_configuration"
+           version="1.0">
+
+    <xs:element name="launch_configuration" type="fep:launch_configuration"></xs:element>
+
+    <xs:complexType name="launch_configuration">
+        <xs:sequence>
+            <xs:element name="schema_version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The schema version of the current file</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>A short description of the launch configuration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contact" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Contact information for this launch configuration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="participants">
+                <xs:annotation>
+                    <xs:documentation>Element -> Participant Mapping</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="participant"
+                                    type="fep:participant"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="participant">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="host" type="xs:string"/>
+            <xs:element name="working_dir" type="xs:string"/>
+            <xs:element name="arguments" type="xs:string"/>
+            <xs:choice>
+                <xs:element name="executable" type="xs:string"/>
+                <xs:element name="remote_starter_alias" type="xs:string"/>
+            </xs:choice>
+
+            <xs:any namespace="##other"
+                    processContents="skip"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

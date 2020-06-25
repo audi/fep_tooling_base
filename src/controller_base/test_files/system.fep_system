@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<system xmlns="fep/xsd/system">
+    <schema_version>1.0.0</schema_version>
+    <description>Test System</description>
+    <version>1</version>
+    <contact>somebody@audi.de</contact>
+    <properties>
+        <property>
+            <name>SystemProperty</name>
+            <type>string</type>
+            <value>SystemPropertyValue</value>
+        </property>
+    </properties>
+    <elements>
+        <element>
+            <name>TestElementInstance</name>
+            <type>TestElement</type>
+            <type_version>1</type_version>
+            <interface_properties>
+                <interface>
+                    <name>TestInterface</name>
+                    <properties>
+                        <property>
+                            <name>InterfaceProperty</name>
+                            <type>string</type>
+                            <value>$(SystemProperty)</value>
+                        </property>
+                    </properties>
+                </interface>
+            </interface_properties>
+            <requirement_resolutions>
+                <requirement_resolution>
+                    <requirement>TestInterface</requirement>
+                    <resolution>TestElementInstance</resolution>
+                </requirement_resolution>
+            </requirement_resolutions>
+        </element>
+    </elements>
+</system>

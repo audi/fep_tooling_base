@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="fep/xsd/properties"
+           xmlns:fep="fep/xsd/properties"
+           version="1.0">
+
+    <xs:element name="property_file" type="fep:property_file">
+        <xs:annotation>
+            <xs:documentation></xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="property_file">
+        <xs:sequence>
+            <xs:element name="schema_version" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>This is the schema version of the current file.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="properties">
+                <xs:annotation>
+                    <xs:documentation>Enumeration for all properties</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="property"
+                                    type="fep:property"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:any namespace="##other" processContents="skip"
+                       minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="property">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Name of the property by PATH</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The property type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The property value encoded as string</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            
+            <xs:any namespace="##other" processContents="skip"
+                       minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

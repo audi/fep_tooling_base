@@ -1,0 +1,35 @@
+#
+# Copyright @ 2019 Audi AG. All rights reserved.
+# 
+#     This Source Code Form is subject to the terms of the Mozilla
+#     Public License, v. 2.0. If a copy of the MPL was not distributed
+#     with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
+# 
+# If it is not possible or desirable to put the notice in a particular file, then
+# You may include the notice in a location (such as a LICENSE file in a
+# relevant directory) where a recipient would be likely to look for such a notice.
+# 
+# You may add additional accurate notices of copyright ownership.
+
+if(fep_controller_base_FOUND)
+    return()
+endif()
+
+find_package(a_util REQUIRED)
+find_package(fep_meta_model REQUIRED)
+
+# Add imported library target
+add_library(fep_controller_base STATIC IMPORTED)
+
+find_library(fep_controller_base_LIBRARY NAMES 
+    fep_controller_based@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@
+    fep_controller_base@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@
+    PATHS ${CMAKE_CURRENT_LIST_DIR}/lib NO_DEFAULT_PATH)
+
+set_target_properties(fep_controller_base PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}/include"
+    INTERFACE_LINK_LIBRARIES "fep_meta_model;a_util"
+    IMPORTED_LOCATION "${fep_controller_base_LIBRARY}"
+)
+
+set(fep_controller_base_FOUND true)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<element xmlns="fep/xsd/element">
+    <schema_version>1.0.0</schema_version>
+    <!-- missing typename -->
+    <description>description1</description>
+    <version>version1</version>
+    <contact>contact1</contact>
+    <interfaces />
+    <requirements />
+</element>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<property_file xmlns="fep/xsd/properties">
+    <schema_version>0.0.0</schema_version>
+    <!-- unknown schema version -->
+    <properties>
+        <property>
+            <name>name1</name>
+            <value>value1</value>
+            <type>type1</type>
+        </property>
+    </properties>
+</property_file>

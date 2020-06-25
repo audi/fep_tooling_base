@@ -1,0 +1,100 @@
+common:
+    files:
+        - README.md
+        - doc/changelog.md
+        - doc/input/img/controller.png
+        - doc/input/img/element.png
+        - doc/input/img/launch_config.png
+        - doc/input/img/resolution_system.png
+        - doc/input/img/system.png
+        - doc/input/meta_model.md
+        - doc/input/mpl.md
+        - doc/input/used_licenses.md
+        - doc/input/xsd/element/fep_element_example_1.0.fep_element_type
+        - doc/input/xsd/element/fep_element_example_1.1.fep_element_type
+        - doc/input/xsd/element/fep_element_example_2.0.fep_element_type
+        - doc/input/xsd/element/fep_element_type_1.0.xsd
+        - doc/input/xsd/element/fep_element_type_1.1.xsd
+        - doc/input/xsd/element/fep_element_type_2.0.xsd
+        - doc/input/xsd/fep2_launch_config.xsd
+        - doc/input/xsd/fep_properties.xsd
+        - doc/input/xsd/system/fep_system_1.0.xsd
+        - doc/input/xsd/system/fep_system_1.1.xsd
+        - doc/input/xsd/system/fep_system_example_1.0.fep_system
+        - doc/input/xsd/system/fep_system_example_1.1.fep_system
+        - doc/license/MPL2.0.txt
+        - doc/license/mpl.md
+        - doc/license/used_licenses.md
+        - fep_controller_base-config.cmake
+        - fep_launcher_base-config.cmake
+        - fep_meta_model-config.cmake
+        - include/common/platform_fixes.h
+        - include/controller_base/controller.h
+        - include/launcher_base/launch_config_loader.h
+        - include/launcher_base/launch_configuration.h
+        - include/launcher_base/launcher.h
+        - include/launcher_base/launcher_writer.h
+        - include/meta_model/meta_model_checker.h
+        - include/meta_model/meta_model_configuration.h
+        - include/meta_model/meta_model_loader.h
+        - include/meta_model/meta_model_types.h
+        - include/meta_model/meta_model_version.h
+        - include/meta_model/meta_model_writer.h
+
+linux_and_qnx_release:
+    conditions:
+        my_conds_linux:
+            os: Linux
+            build_type: Release
+        my_conds_qnx:
+            os: Neutrino
+            build_type: Release
+    files:
+        - lib/libfep_controller_base1.3.a
+        - lib/libfep_launcher_base1.3.a
+        - lib/libfep_meta_model1.3.a
+
+linux_and_qnx_debug:
+    conditions:
+        my_conds_linux:
+            os: Linux
+            build_type: Debug
+        my_conds_qnx:
+            os: Neutrino
+            build_type: Debug
+    files:
+        - lib/libfep_controller_based1.3.a
+        - lib/libfep_launcher_based1.3.a
+        - lib/libfep_meta_modeld1.3.a
+
+windows_release:
+    conditions:
+        my_conds:
+            os: Windows
+            build_type: Release
+    files:
+        - lib/fep_controller_base1.3.lib
+        - lib/fep_launcher_base1.3.lib
+        - lib/fep_meta_model1.3.lib
+
+windows_debug:
+    conditions:
+        my_conds:
+            os: Windows
+            build_type: Debug
+    files:
+        - lib/fep_controller_based1.3.lib
+        - lib/fep_launcher_based1.3.lib
+        - lib/fep_meta_modeld1.3.lib
+
+private_test_results:
+    conditions:
+        cond_linux:
+            os: Linux
+        cond_windows:
+            os: Windows
+    files:
+        - test/results/tester_controller_base/*
+        - test/results/tester_launch_config_parser/*
+        - test/results/tester_launcher_base/*
+        - test/results/tester_meta_model/*

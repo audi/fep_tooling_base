@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch_configuration xmlns="fep/xsd/launch_configuration">
+    <schema_version>1.0.0</schema_version>
+    <description>Simple local deployment configuration</description>
+    <contact>somebody@audi.de</contact>
+    <participants>
+        <participant>
+            <name>name1</name>
+            <host>host1</host>
+            <working_dir>working_dir1</working_dir>
+            <arguments>arguments1</arguments>
+            <remote_starter_alias>remote_starter_alias1</remote_starter_alias>
+        </participant>
+        <participant>
+            <name>name2</name>
+            <host>host2</host>
+            <working_dir>working_dir2</working_dir>
+            <arguments>arguments2</arguments>
+            <executable>executable2</executable>
+        </participant>
+        <participant>
+            <name>name3</name>
+            <host>host3</host>
+            <working_dir>working_dir3</working_dir>
+            <arguments>arguments3</arguments>
+            <executable>executable3</executable>
+            <ignored_extension />
+        </participant>
+    </participants>
+    <ignored_extension />
+</launch_configuration>
